@@ -1,11 +1,18 @@
 import { App } from "cdk8s";
-import { GrafanaChart } from "./digital/apps/grafana";
+import { GrafanaChart, JaegerChart } from "./digital/apps";
+
 const app = new App();
 
 new GrafanaChart(app, {
   name: "grafana",
   env: "prod",
   host: "grafana.bolanos.dev",
+});
+
+new JaegerChart(app, {
+  name: "jaeger",
+  env: "prod",
+  host: "jaeger.bolanos.dev",
 });
 
 app.synth();
