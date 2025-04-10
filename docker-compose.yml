@@ -1,0 +1,88 @@
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=devstack_user
+      - POSTGRES_PASSWORD=devstack_pwd
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    command: postgres -c ssl=off
+
+  postgres_exporter:
+    image: quay.io/prometheuscommunity/postgres-exporter
+    network_mode: "host"
+    ports:
+      - 9187:9187
+    environment:
+      - DATA_SOURCE_URI=localhost:5434
+      - DATA_SOURCE_USER=devstack_user
+      - DATA_SOURCE_PASS=devstack_pwd
+    depends_on:
+      - postgres
+
+  prometheus:
+    build:
+      context: ./dockerfiles/prometheus
+      dockerfile: Dockerfile
+    network_mode: "host"
+    ports:
+      - "9090:9090"
+    depends_on:
+      - postgres_exporter
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./local/grafana/dashboards:/var/lib/grafana/dashboards
+      - ./local/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    restart: unless-stopped
+
+  jaeger:
+    image: jaegertracing/jaeger:2.3.0
+    ports:
+      - "16687:16686"
+      - "4319:4317"
+      - "4320:4318"
+      - "5779:5778"
+      - "9412:9411"
+
+  kafka:
+    image: apache/kafka
+    network_mode: "host"
+    ports:
+      - "9092:9092"
+
+  kafka_ui:
+    image: provectuslabs/kafka-ui
+    network_mode: "host"
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=local
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=localhost:9092
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.0
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false # Disable security
+    ports:
+      - "9200:9200"
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.13.0
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200 # Point Kibana to the local Elasticsearch instance
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+
+volumes:
+  postgres_data:
+    driver: local

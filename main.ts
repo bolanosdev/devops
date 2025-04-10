@@ -1,7 +1,11 @@
 import { App } from "cdk8s";
-import { GrafanaChart } from "./lib/grafana";
+import { GrafanaChart } from "./digital/apps/grafana";
 const app = new App();
 
-new GrafanaChart(app, "grafana", "bd");
+new GrafanaChart(app, {
+  name: "grafana",
+  env: "prod",
+  host: "grafana.bolanos.dev",
+});
 
 app.synth();
