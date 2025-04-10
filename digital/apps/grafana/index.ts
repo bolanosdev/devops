@@ -13,6 +13,7 @@ import {
   CreateService,
   CreateIngress,
 } from "../../utils/generators";
+import { CreateNamespace } from "../../utils/generators/namespace";
 
 export class GrafanaChart extends Chart {
   constructor(scope: Construct, properties: AppProps) {
@@ -21,8 +22,14 @@ export class GrafanaChart extends Chart {
     const { name, env, host } = properties;
     const ports = get_app_ports("http-server", 80, 3000);
 
-    CreateDeployment(this, {
+    CreateNamespace(this, {
       id: "1",
+      env,
+      name,
+    });
+
+    CreateDeployment(this, {
+      id: "2",
       env,
       name,
       replicas: 1,
@@ -30,7 +37,7 @@ export class GrafanaChart extends Chart {
     });
 
     CreateService(this, {
-      id: "2",
+      id: "3",
       env,
       name,
       ports: [ports.service],
@@ -38,7 +45,7 @@ export class GrafanaChart extends Chart {
 
     if (host) {
       CreateIngress(this, {
-        id: "3",
+        id: "4",
         env,
         name,
         rules: [get_ingress_rule(name, host, ports.ingress)],

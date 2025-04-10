@@ -23,7 +23,7 @@ export const CreateService = (chart: Chart, properties: GetServiceProps) => {
 
   const deploy = new KubeService(chart, id, {
     metadata: {
-      name,
+      name: `${name}-service`,
       namespace,
     },
     spec: {

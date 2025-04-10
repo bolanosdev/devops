@@ -59,7 +59,6 @@ export const get_app_ports = (
     targetPort: IntOrString.fromNumber(outbound),
   },
   ingress: {
-    name,
     number: outbound,
   },
 });
