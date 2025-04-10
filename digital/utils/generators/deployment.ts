@@ -25,6 +25,10 @@ export const CreateDeployment = (
     GetProperties(properties);
 
   const deploy = new KubeDeployment(chart, id, {
+    metadata: {
+      name: `${name}-deployment`,
+      namespace,
+    },
     spec: {
       replicas,
       selector: {
@@ -32,8 +36,6 @@ export const CreateDeployment = (
       },
       template: {
         metadata: {
-          name: `${name}-deployment`,
-          namespace,
           labels: selector,
         },
         spec: {

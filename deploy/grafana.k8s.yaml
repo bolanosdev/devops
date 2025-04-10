@@ -6,7 +6,8 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: grafana-2-c8ec1c99
+  name: grafana-deployment
+  namespace: grafana-prod
 spec:
   replicas: 1
   selector:
@@ -16,8 +17,6 @@ spec:
     metadata:
       labels:
         app: grafana
-      name: grafana-deployment
-      namespace: grafana-prod
     spec:
       containers:
         - image: grafana/grafana

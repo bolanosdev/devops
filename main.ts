@@ -1,6 +1,5 @@
 import { App } from "cdk8s";
-import { GrafanaChart, JaegerChart } from "./digital/apps";
-
+import { GrafanaChart, JaegerChart } from "./digital/apps/devstack/";
 const app = new App();
 
 new GrafanaChart(app, {

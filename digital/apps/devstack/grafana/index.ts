@@ -2,46 +2,44 @@ import { Construct } from "constructs";
 import { Chart } from "cdk8s";
 
 import { image } from "./vars";
-import { AppProps } from "../../types";
+import { AppProps } from "../../../types";
 import {
   get_app_ports,
   get_app_container,
   get_ingress_rule,
-} from "../../utils";
+} from "../../../utils";
 import {
   CreateDeployment,
   CreateService,
   CreateIngress,
-} from "../../utils/generators";
-import { CreateNamespace } from "../../utils/generators/namespace";
+  CreateNamespace,
+} from "../../../utils/generators";
 
-export class JaegerChart extends Chart {
+export class GrafanaChart extends Chart {
   constructor(scope: Construct, properties: AppProps) {
     super(scope, properties.name);
 
     const { name, env, host } = properties;
-    const http_port = get_app_ports("http-server", 80, 16686);
-    const dial_port = get_app_ports("dial-server", 4317, 4317);
+    const ports = get_app_ports("http-server", 80, 3000);
 
     CreateNamespace(this, {
       id: "1",
       env,
       name,
     });
-
     CreateDeployment(this, {
       id: "2",
       env,
       name,
       replicas: 1,
-      containers: [get_app_container({ image, port: http_port.container })],
+      containers: [get_app_container({ image, port: ports.container })],
     });
 
     CreateService(this, {
       id: "3",
       env,
       name,
-      ports: [http_port.service, dial_port.service],
+      ports: [ports.service],
     });
 
     if (host) {
@@ -49,7 +47,7 @@ export class JaegerChart extends Chart {
         id: "4",
         env,
         name,
-        rules: [get_ingress_rule(name, host, http_port.ingress)],
+        rules: [get_ingress_rule(name, host, ports.ingress)],
       });
     }
   }

@@ -1,4 +1,4 @@
-import { AppImage } from "../../types";
+import { AppImage } from "../../../types";
 export const image: AppImage = {
   repo: "jaegertracing",
   name: "jaeger",

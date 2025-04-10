@@ -6,7 +6,8 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jaeger-2-c8e96a3a
+  name: jaeger-deployment
+  namespace: jaeger-prod
 spec:
   replicas: 1
   selector:
@@ -16,8 +17,6 @@ spec:
     metadata:
       labels:
         app: jaeger
-      name: jaeger-deployment
-      namespace: jaeger-prod
     spec:
       containers:
         - image: jaegertracing/jaeger:2.5.0
