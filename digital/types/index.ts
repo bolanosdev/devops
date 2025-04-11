@@ -5,12 +5,12 @@ import {
   IngressRule,
   ServiceBackendPort,
 } from "@do/k8s";
-export type Environment = "staging" | "prod";
 export type ServiceType = "ClusterIP";
+export type PVCAccessMode = "ReadWriteOnce";
 
 export type AppProps = {
   name: string;
-  env: Environment;
+  env: string;
   host?: string;
 };
 export type AppPorts = {
@@ -36,6 +36,14 @@ export type AppImage = {
   policy?: string;
 };
 
+export type AppPVCResourceRequest = {
+  storage: string;
+};
+
+export type AppPVCResources = AppResource & {
+  requests: AppPVCResourceRequest;
+};
+
 export type AppResource = {
   id: string;
   env: Environment;
@@ -54,6 +62,11 @@ export type GetServiceProps = AppResource & {
 
 export type GetIngressProps = AppResource & {
   rules: IngressRule[];
+};
+
+export type GetPersistentVolumeClaimProps = AppResource & {
+  access_mode: PVCAccessMode;
+  resources: AppPVCResources;
 };
 
 export type CreateDeploymentProps = {
@@ -83,4 +96,13 @@ export type CreateIngressProps = {
   namespace: string;
 
   rules: IngressRule[];
+};
+
+export type CreatePVCProps = {
+  id: string;
+  env: Environment;
+  name: string;
+  namespace: string;
+
+  access_mode: string;
 };

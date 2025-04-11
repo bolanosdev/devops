@@ -11,7 +11,7 @@ import {
 import { AppProps } from "@do/types";
 import { get_app_ports, get_app_container, get_ingress_rule } from "@do/utils";
 
-export class GrafanaChart extends Chart {
+export class DatabasesChart extends Chart {
   constructor(scope: Construct, properties: AppProps) {
     super(scope, properties.name);
 

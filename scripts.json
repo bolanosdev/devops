@@ -1,0 +1,14 @@
+{
+  "synth:local": {
+    "alias": "Synth Local",
+    "command": "ENV=local cdk8s synth",
+    "desc": "run cdk8s synth command for minikube cluster"
+  },
+  "synt:prod": {
+    "alias": "Synth Prod",
+    "command": "ENV=prod cdk8s synth",
+    "desc": "run cdk8s synth command for production cluster"
+  },
+  "upgrade": "npm i cdk8s@latest cdk8s-cli@latest",
+  "upgrade:next": "npm i cdk8s@next cdk8s-cli@next"
+}

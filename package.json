@@ -6,14 +6,8 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "import": "cdk8s import",
-    "synth": "cdk8s synth",
-    "compile": "tsc --build",
-    "watch": "tsc --build -w",
-    "test": "jest",
-    "build": "npm run compile && npm run test && npm run synth",
-    "upgrade": "npm i cdk8s@latest cdk8s-cli@latest",
-    "upgrade:next": "npm i cdk8s@next cdk8s-cli@next"
+    "gen:local": "ENV=local cdk8s synth",
+    "gen:prod": "ENV=prod cdk8s synth"
   },
   "dependencies": {
     "cdk8s": "^2.69.62",
@@ -24,6 +18,7 @@
   "devDependencies": {
     "@types/jest": "^27",
     "@types/node": "^14",
+    "better-scripts": "^0.4.3",
     "cdk8s-cli": "^2.200.38",
     "jest": "^27",
     "ts-jest": "^27",
