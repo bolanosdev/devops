@@ -1,7 +1,7 @@
 import { Chart } from "cdk8s";
-import { KubeNamespace } from "../../../imports/k8s";
-import { AppResource } from "../../types";
-import { get_app_namespace } from "../";
+import { KubeNamespace } from "@do/k8s";
+import { AppResource } from "@do/types";
+import { get_app_namespace } from "@do/utils";
 
 const GetProperties = (properties: AppResource) => {
   const { id, env } = properties;

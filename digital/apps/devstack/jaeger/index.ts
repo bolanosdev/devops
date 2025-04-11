@@ -2,18 +2,14 @@ import { Construct } from "constructs";
 import { Chart } from "cdk8s";
 
 import { image } from "./vars";
-import { AppProps } from "../../../types";
-import {
-  get_app_ports,
-  get_app_container,
-  get_ingress_rule,
-} from "../../../utils";
 import {
   CreateDeployment,
   CreateService,
   CreateIngress,
   CreateNamespace,
-} from "../../../utils/generators";
+} from "@do/utils/generators";
+import { AppProps } from "@do/types";
+import { get_app_ports, get_app_container, get_ingress_rule } from "@do/utils";
 
 export class JaegerChart extends Chart {
   constructor(scope: Construct, properties: AppProps) {

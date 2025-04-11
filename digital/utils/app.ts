@@ -1,7 +1,6 @@
-import { IngressRule } from "cdk8s-plus-32/lib/imports/k8s";
-import { IntOrString, ServiceBackendPort } from "../../imports/k8s";
-import { AppContainer, AppResource, AppPorts, AppSelector } from "../types";
-import { get_image_name } from "./image";
+import { get_image_name } from "@do/utils";
+import { IntOrString, ServiceBackendPort, IngressRule } from "@do/k8s";
+import { AppContainer, AppResource, AppPorts, AppSelector } from "@do/types";
 
 export const get_app_namespace = (app: AppResource) => `${app.name}-${app.env}`;
 

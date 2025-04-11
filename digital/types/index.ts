@@ -4,7 +4,7 @@ import {
   ServicePort,
   IngressRule,
   ServiceBackendPort,
-} from "../../imports/k8s";
+} from "@do/k8s";
 export type Environment = "staging" | "prod";
 export type ServiceType = "ClusterIP";
 

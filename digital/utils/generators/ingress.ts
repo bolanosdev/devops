@@ -1,7 +1,7 @@
 import { Chart } from "cdk8s";
-import { KubeIngress } from "../../../imports/k8s";
-import { GetIngressProps, CreateIngressProps } from "../../types";
-import { get_app_namespace } from "../";
+import { KubeIngress } from "@do/k8s";
+import { get_app_namespace } from "@do/utils";
+import { GetIngressProps, CreateIngressProps } from "@do/types";
 
 const GetProperties = (properties: GetIngressProps) => {
   const { id, env, name, rules } = properties;

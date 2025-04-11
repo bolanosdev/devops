@@ -1,7 +1,7 @@
 import { Chart } from "cdk8s";
-import { KubeDeployment } from "../../../imports/k8s";
-import { CreateDeploymentProps, GetDeploymentProps } from "../../types";
-import { get_app_namespace, get_app_selectors } from "../";
+import { KubeDeployment } from "@do/k8s";
+import { get_app_namespace, get_app_selectors } from "@do/utils";
+import { CreateDeploymentProps, GetDeploymentProps } from "@do/types";
 
 const GetProperties = (properties: GetDeploymentProps) => {
   const { id, name, env, replicas, containers } = properties;

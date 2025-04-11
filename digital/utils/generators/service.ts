@@ -1,7 +1,7 @@
 import { Chart } from "cdk8s";
-import { KubeService } from "../../../imports/k8s";
-import { GetServiceProps, CreateServiceProps } from "../../types";
-import { get_app_namespace, get_app_selectors } from "../";
+import { KubeService } from "@do/k8s";
+import { GetServiceProps, CreateServiceProps } from "@do/types";
+import { get_app_namespace, get_app_selectors } from "@do/utils";
 
 const GetProperties = (properties: GetServiceProps) => {
   const { id, env, name, type, ports } = properties;

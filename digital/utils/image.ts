@@ -1,4 +1,4 @@
-import { AppImage } from "../types";
+import { AppImage } from "@do/types";
 
 export const get_image_name = (image: AppImage) => {
   var image_name = "";
