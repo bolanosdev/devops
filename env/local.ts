@@ -9,4 +9,12 @@ export const local_vars: ChartsConfig = {
     name: "jaeger",
     host: "jaeger.bolanos.local",
   },
+  db: {
+    name: "databases",
+    host: "db.bolanos.local",
+  },
+  proxy: {
+    name: "proxy",
+    host: "bolanos.local",
+  },
 };

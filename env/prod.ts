@@ -9,4 +9,12 @@ export const prod_vars: ChartsConfig = {
     name: "jaeger",
     host: "jaeger.bolanos.dev",
   },
+  db: {
+    name: "databases",
+    host: "db.bolanos.dev",
+  },
+  proxy: {
+    name: "proxy",
+    host: "bolanos.dev",
+  },
 };
