@@ -1,5 +1,1 @@
-language: typescript
 app: npx ts-node main.ts
-output: ./deploy
-imports:
-  - k8s

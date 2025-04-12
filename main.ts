@@ -1,10 +1,9 @@
 import { App } from "cdk8s";
-import { GrafanaChart, JaegerChart } from "./digital/apps/devstack/";
+import { JaegerChart, GrafanaChart } from "./digital/apps/devstack/";
 import { GetEnv, GetEnvVars } from "env";
 
 const app = new App();
 
-console.log("f: process.env", process.env)
 const env = GetEnv();
 const vars = GetEnvVars(env);
 const { grafana, jaeger } = vars;

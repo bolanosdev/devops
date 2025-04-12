@@ -6,8 +6,9 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "gen:local": "ENV=local cdk8s synth",
-    "gen:prod": "ENV=prod cdk8s synth"
+    "gen:local": "ENV=local cdk8s synth --output deploy/local",
+    "gen:prod": "ENV=prod cdk8s synth --output deploy/prod",
+    "gen": "npm run gen:local && npm run gen:prod"
   },
   "dependencies": {
     "cdk8s": "^2.69.62",
@@ -19,7 +20,7 @@
     "@types/jest": "^27",
     "@types/node": "^14",
     "better-scripts": "^0.4.3",
-    "cdk8s-cli": "^2.200.38",
+    "cdk8s-cli": "^2.200.40",
     "jest": "^27",
     "ts-jest": "^27",
     "ts-node": "^10",
