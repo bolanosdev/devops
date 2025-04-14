@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret-local
+  namespace: proxy-local
+stringData:
+  key: "my-certificate-secret"
+type: Opaque
+
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: issuer-local
+  namespace: proxy-local
+spec:
+  acme:
+    server: https://acme-v02.api.lets-encrypt.org/directory
+    email: "cbolanosmx@gmail.com"
+    privateKeySecretRef:
+      name: letsencrypt-local
+    solvers:
+      - http01:
+          ingress:
+            class: nginx
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: certificate-local
+  namespace: proxy-local
+spec:
+  secretName: certificate-tls-local
+  issuerRef:
+    name: issuer-local
+    kind: ClusterIssuer
+  commonName: bolanos.local
+  dnsNames:
+    - bolanos.local
+    - www.bolanos.local
