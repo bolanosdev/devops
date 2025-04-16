@@ -10,11 +10,13 @@ export const local_vars: ChartsConfig = {
     host: "jaeger.bolanos.local",
   },
   db: {
-    name: "databases",
+    name: "db",
     host: "db.bolanos.local",
   },
-  proxy: {
-    name: "proxy",
-    host: "bolanos.local",
+  exporters: {
+    brawney: {
+      name: "brawney-postgres-exporter",
+      host: "postgres-exporter.brawney.local",
+    },
   },
 };

@@ -7,7 +7,9 @@ export type ChartsConfig = {
   grafana: ChartConfig;
   jaeger: ChartConfig;
   db: ChartConfig;
-  proxy: ChartConfig;
+  exporters: {
+    brawney: ChartConfig;
+  };
 };
 
 export type AppConfig = {

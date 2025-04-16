@@ -1,8 +1,8 @@
-import { local_vars } from "./env/local";
+import { local_vars } from "./env/dev";
 import { prod_vars } from "./env/prod";
 
 export function GetEnv() {
-  return process.env.ENV === "prod" ? "prod" : "local";
+  return process.env.ENV === "prod" ? "prod" : "dev";
 }
 
 export function GetEnvVars(env: string) {

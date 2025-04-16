@@ -1,14 +1,14 @@
 import { Chart } from "cdk8s";
 import { KubeService } from "@do/k8s";
 import { GetServiceProps, CreateServiceProps } from "@do/types";
-import { get_app_namespace, get_app_selectors } from "@do/utils";
+import { get_app_name, get_app_namespace, get_app_selectors } from "@do/utils";
 
 const GetProperties = (properties: GetServiceProps) => {
-  const { id, env, name, type, ports } = properties;
+  const { id, env, type, ports } = properties;
   const deployment_props: CreateServiceProps = {
     id,
     env,
-    name,
+    name: get_app_name(properties, "service"),
     type: type ? type : "ClusterIP",
     namespace: get_app_namespace(properties),
     selector: get_app_selectors(properties),
@@ -23,7 +23,7 @@ export const CreateService = (chart: Chart, properties: GetServiceProps) => {
 
   const deploy = new KubeService(chart, id, {
     metadata: {
-      name: `${name}-service`,
+      name,
       namespace,
     },
     spec: {

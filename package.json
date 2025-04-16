@@ -2,26 +2,29 @@
   "name": "dev_stack",
   "version": "1.0.0",
   "main": "main.js",
-  "types": "main.ts",
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "gen:local": "ENV=local cdk8s synth --output deploy/local",
-    "gen:prod": "ENV=prod cdk8s synth --output deploy/prod",
-    "gen": "npm run gen:local && npm run gen:prod"
+    "prepare": "husky install",
+    "gen:dev": "ENV=dev cdk8s synth --output deploy/dev --verbose",
+    "gen:prod": "ENV=prod cdk8s synth --output deploy/prod --verbose",
+    "gen": "npm run gen:dev && npm run gen:prod"
   },
   "dependencies": {
+    "@dopplerhq/node-sdk": "^1.3.0",
     "cdk8s": "^2.69.62",
     "cdk8s-plus-28": "^2.5.6",
     "cdk8s-plus-32": "^2.0.10",
-    "constructs": "^10.4.2"
+    "constructs": "^10.4.2",
+    "husky": "^9.1.7"
   },
   "devDependencies": {
     "@types/jest": "^27",
     "@types/node": "^14",
     "better-scripts": "^0.4.3",
-    "cdk8s-cli": "^2.200.40",
+    "cdk8s-cli": "^2.200.44",
     "jest": "^27",
+    "rimraf": "^6.0.1",
     "ts-jest": "^27",
     "ts-node": "^10",
     "tsconfig-paths": "^4.2.0",
