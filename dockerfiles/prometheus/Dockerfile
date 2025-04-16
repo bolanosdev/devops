@@ -1,3 +1,3 @@
 FROM prom/prometheus
 RUN echo $(ls -la)
-ADD prometheus.yml /etc/prometheus/
+ADD configs/prod.yaml /etc/prometheus/prometheus.yml

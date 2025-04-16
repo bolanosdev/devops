@@ -10,10 +10,10 @@ alerting:
 rule_files:
 
 scrape_configs:
-  - job_name: "devstack_local_db_exporter"
+  - job_name: "brawney_db"
     static_configs:
-      - targets: [localhost:9187]
+      - targets: ["brawney-postgres-exporter-service.db-prod.svc.cluster.local"]
 
-  - job_name: "brawney_local"
+  - job_name: "brawney_api"
     static_configs:
-      - targets: ["localhost:9005"]
+      - targets: ["api.brawney.com"]

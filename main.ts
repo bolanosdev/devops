@@ -5,6 +5,7 @@ import {
   JaegerChart,
   GrafanaChart,
   DatabasesChart,
+  PrometheusChart,
 } from "./digital/apps/devstack";
 
 import { GetEnv, GetEnvVars } from "./env";
@@ -18,7 +19,7 @@ const doppler = new DopplerSDK({
 const app = new App();
 const env = GetEnv();
 const vars = GetEnvVars(env);
-const { grafana, jaeger, db, exporters } = vars;
+const { grafana, jaeger, db, exporters, prometheus } = vars;
 
 doppler.secrets.list("devops", env).then(({ secrets }) => {
   new GrafanaChart(app, {
@@ -46,6 +47,12 @@ doppler.secrets.list("devops", env).then(({ secrets }) => {
     namespace: "db",
     host: exporters.brawney.host,
     secrets: secrets as SecretDictionary,
+  });
+
+  new PrometheusChart(app, {
+    env: env,
+    name: prometheus.name,
+    host: prometheus.host,
   });
 
   app.synth();
