@@ -1,6 +1,6 @@
 export type ChartConfig = {
   name: string;
-  host: string;
+  host?: string;
 };
 
 export type ChartsConfig = {
@@ -8,6 +8,12 @@ export type ChartsConfig = {
   jaeger: ChartConfig;
   db: ChartConfig;
   prometheus: ChartConfig;
+  apis: {
+    brawney: ChartConfig;
+  };
+  migrators: {
+    brawney: ChartConfig;
+  };
   exporters: {
     brawney: ChartConfig;
   };

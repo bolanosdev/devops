@@ -14,6 +14,7 @@ export type AppProps = {
   env: string;
   host?: string;
   secrets?: SecretDictionary | undefined;
+  commands?: string[];
 };
 export type AppPorts = {
   container: ContainerPort;
@@ -29,12 +30,13 @@ export type AppContainer = {
   name?: string;
   image: AppImage;
   port?: ContainerPort;
+  commands?: string[];
   env_vars?: AppDictionary;
   volumes?: AppVolume[];
 };
 
 export type AppImage = {
-  repo?: string;
+  registry?: string;
   name: string;
   tag?: string;
   policy?: string;

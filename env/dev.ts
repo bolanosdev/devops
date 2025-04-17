@@ -17,6 +17,17 @@ export const local_vars: ChartsConfig = {
     name: "prometheus",
     host: "prometheus.bolanos.local",
   },
+  apis: {
+    brawney: {
+      name: "brawney-api",
+      host: "api.brawney.local",
+    },
+  },
+  migrators: {
+    brawney: {
+      name: "brawney-migrator",
+    },
+  },
   exporters: {
     brawney: {
       name: "brawney-postgres-exporter",

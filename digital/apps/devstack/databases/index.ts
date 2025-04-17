@@ -72,7 +72,7 @@ export class DatabasesChart extends Chart {
     });
 
     CreateService(this, {
-      id: "6",
+      id: "7",
       env,
       name,
       ports: [ports.service],

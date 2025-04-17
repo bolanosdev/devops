@@ -23,6 +23,7 @@ export type GetDeploymentProps = AppResource & {
 
 export type GetPodProps = AppResource & {
   env_vars?: AppDictionary;
+  command?: string[];
   containers: Container[];
 };
 

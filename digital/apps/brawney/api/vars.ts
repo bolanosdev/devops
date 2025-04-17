@@ -3,6 +3,12 @@ import { registry } from "@do/consts";
 
 export const image: AppImage = {
   registry,
-  name: "prometheus",
+  name: "brawney-api",
+  tag: "latest",
+};
+
+export const migrate: AppImage = {
+  registry,
+  name: "brawney-api",
   tag: "latest",
 };

@@ -1,5 +1,12 @@
 import { AppImage } from "@do/types";
+import { registry } from "@do/consts";
+
 export const image: AppImage = {
-  repo: "quay.io/prometheuscommunity",
+  registry: "quay.io/prometheuscommunity",
   name: "postgres-exporter",
+};
+
+export const migrator: AppImage = {
+  registry,
+  name: "brawney-migrations",
 };
