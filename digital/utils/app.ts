@@ -72,6 +72,7 @@ export const get_app_container = ({
   image,
   port,
   volumes,
+  resources,
   env_vars,
 }: AppContainer) => {
   return {
@@ -80,6 +81,7 @@ export const get_app_container = ({
     imagePullPolicy: image.policy ? image.policy : "Always",
     ports: port ? [port] : [],
     env: get_app_envvars(env_vars),
+    resources,
     volumeMounts: volumes?.map((it) => ({
       name: it.name,
       mountPath: it.mount_path,
@@ -102,7 +104,7 @@ export const get_ingress_rule = (
           path: "/",
           backend: {
             service: {
-              name: `${name}-service`,
+              name,
               port,
             },
           },

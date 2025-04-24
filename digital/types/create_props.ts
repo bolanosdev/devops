@@ -6,7 +6,12 @@ import {
   Volume,
   ResourceRequirements,
 } from "@do/k8s";
-import { AppResource, AppSelector, AppServiceType } from "./app_props";
+import {
+  AppDictionary,
+  AppResource,
+  AppSelector,
+  AppServiceType,
+} from "./app_props";
 
 export type CreateDeploymentProps = {
   id: string;
@@ -46,6 +51,7 @@ export type CreateIngressProps = {
   name: string;
   namespace: string;
 
+  annotations?: AppDictionary;
   rules: IngressRule[];
 };
 

@@ -33,6 +33,7 @@ export type GetServiceProps = AppResource & {
 };
 
 export type GetIngressProps = AppResource & {
+  annotations?: AppDictionary;
   rules: IngressRule[];
 };
 

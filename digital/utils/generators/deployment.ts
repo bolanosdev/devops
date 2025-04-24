@@ -9,12 +9,12 @@ import {
 import { CreateDeploymentProps, GetDeploymentProps } from "@do/types";
 
 const GetProperties = (properties: GetDeploymentProps) => {
-  const { id, env, replicas, volumes, containers } = properties;
+  const { id, env, namespace, replicas, volumes, containers } = properties;
   const deployment_props: CreateDeploymentProps = {
     id,
     env,
     name: get_app_name(properties, "deployment"),
-    namespace: get_app_namespace(properties),
+    namespace: namespace || get_app_namespace(properties),
     selector: get_app_selectors(properties),
     replicas,
     volumes: get_app_volumes(volumes),

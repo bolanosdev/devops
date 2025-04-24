@@ -4,6 +4,7 @@ services:
     environment:
       - POSTGRES_USER=devstack_user
       - POSTGRES_PASSWORD=devstack_pwd
+      - POSTGRES_DB=brawney_dev_db
     ports:
       - "5434:5432"
     volumes:

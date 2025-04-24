@@ -47,7 +47,7 @@ export class BrawneyExporterChart extends Chart {
         env,
         name,
         namespace,
-        rules: [get_ingress_rule(name, host, ports.ingress)],
+        rules: [get_ingress_rule(`${name}-service`, host, ports.ingress)],
       });
     }
   }

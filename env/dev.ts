@@ -13,6 +13,14 @@ export const local_vars: ChartsConfig = {
     name: "db",
     host: "db.bolanos.local",
   },
+  elastic: {
+    name: "elastic",
+    host: "elastic.bolanos.local",
+  },
+  kibana: {
+    name: "kibana",
+    host: "kibana.bolanos.local",
+  },
   prometheus: {
     name: "prometheus",
     host: "prometheus.bolanos.local",

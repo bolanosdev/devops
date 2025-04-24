@@ -12,7 +12,7 @@ rule_files:
 scrape_configs:
   - job_name: "brawney_db"
     static_configs:
-      - targets: ["brawney-postgres-exporter-service.db-prod.svc.cluster.local"]
+      - targets: ["postgres-exporter.brawney.com"]
 
   - job_name: "brawney_api"
     static_configs:

@@ -1,7 +1,12 @@
-import { ContainerPort, ServicePort, ServiceBackendPort } from "@do/k8s";
+import {
+  ContainerPort,
+  ServicePort,
+  ServiceBackendPort,
+  ResourceRequirements,
+} from "@do/k8s";
 
 export type AppServiceType = "ClusterIP" | "LoadBalancer";
-export type PVCAccessMode = "ReadWriteOnce";
+export type PVCAccessMode = "ReadWriteOnce" | "ReadWriteMany";
 
 export type Secret = {
   raw: string;
@@ -33,6 +38,7 @@ export type AppContainer = {
   commands?: string[];
   env_vars?: AppDictionary;
   volumes?: AppVolume[];
+  resources?: ResourceRequirements;
 };
 
 export type AppImage = {
@@ -40,6 +46,7 @@ export type AppImage = {
   name: string;
   tag?: string;
   policy?: string;
+  resources?: ResourceRequirements;
 };
 
 export type AppResource = {

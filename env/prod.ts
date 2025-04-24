@@ -13,6 +13,14 @@ export const prod_vars: ChartsConfig = {
     name: "db",
     host: "db.bolanos.dev",
   },
+  elastic: {
+    name: "elastic",
+    host: "elastic.bolanos.dev",
+  },
+  kibana: {
+    name: "kibana",
+    host: "kibana.bolanos.dev",
+  },
   prometheus: {
     name: "prometheus",
     host: "prometheus.bolanos.dev",

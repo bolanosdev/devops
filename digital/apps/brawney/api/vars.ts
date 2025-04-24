@@ -12,3 +12,8 @@ export const migrate: AppImage = {
   name: "brawney-api",
   tag: "latest",
 };
+
+export const migrator: AppImage = {
+  registry,
+  name: "brawney-migrator",
+};

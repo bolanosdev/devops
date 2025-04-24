@@ -44,7 +44,7 @@ export class PrometheusChart extends Chart {
         id: "4",
         env,
         name,
-        rules: [get_ingress_rule(name, host, http_port.ingress)],
+        rules: [get_ingress_rule(`${name}-service`, host, http_port.ingress)],
       });
     }
   }
